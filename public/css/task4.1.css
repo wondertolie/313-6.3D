@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+
+p{
+	color: #22BEBF;
+	font-size: 20px;
+}
+#a{
+	width: 485px;
+	height: 25px;
+}
+
+.wholebody{
+	width:500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.longpart{
+	width: 100%;
+	clear: both;
+}
+
+.shortpart{
+	float: left;
+	width: 230px;
+	margin-right: 20px;
+}
+
+.inputvalue{
+	width: 230px;
+}
+
+.linputvalue{
+	width: 480px;
+}
+
+
+
+.button{
+	width: 130px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+

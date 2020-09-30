@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>iCrowdTask SignIn</title>
+	<link href="css/test5.1.css" rel="stylesheet" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fir=no">
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id"
+		content="665270538790-otv1lj6nauom7g74c52fq6uitv5c64gn.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://apis.google.com/js/api.js"></script>
+
+
+</head>
+
+<body>
+  <hr>
+  <div class="wholebody">
+	  
+    <div class="title"><h4><strong>iCrowdTask Login</strong></h4></div>
+  	<div class="mainbody">
+	  <div class="sign">
+
+ 			<div class="signin">
+			  <h2><strong>Sign in</strong></h2>
+ 		 	</div>
+  			<div class="signup">
+	 		 <a href="regist.html">Sign up</a>
+	   	    </div>
+ 	 </div>
+     <form action="/login" method="POST">
+     	 <div class="info">
+       		<label>Your email</label><br />
+          	<input name="email" type="email" placeholder="***@**" id="email" required/>
+         </div> 
+      <div class="info">
+        <label>Your password</label>
+		  <div class="forg"><a href="./sendmail.html">Forgot?</a></div>
+          <div><input name="password" id="password" placeholder="******" type="password" required></div>
+      </div> 
+		  
+      <div class="check">
+		<label> Save password </label>
+		<td class="field"><input type="checkbox" class="remember" checked>
+
+      </div> 
+      <div class="btn">
+          <button type="submit" style="background-color: #65abec;width: 250px;height: 30px;color:white;text-align: center" onclick="Submit()"> Login  </button>
+      </div>                                                            
+ 	 </form>
+	 
+	  <label id="google" for="google">Sign in with Google</label>
+	  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+	</div>
+	</div>
+	  
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		var email = localStorage.getItem("email");
+		var password = localStorage.getItem("password");
+		$("#email").val(email)
+		$("#password").val(password)
+		if (email != '' && password != '') {
+			$("input[type=checkbox]").prop('checked', true)
+
+		}
+	});
+	function Submit(event) {
+		if ($("input[type=checkbox]").prop('checked')) {
+			localStorage.setItem("email", $("#email").val())
+			localStorage.setItem("password", $("#password").val())
+		} else {
+			localStorage.setItem("email", '')
+			localStorage.setItem("password", '')
+		}
+
+	}
+
+
+</script>
+
+
+
+
+<script>
+	function onSignIn(googleUser) {
+		gapi.load('auth2', function () {
+		gapi.auth2.init();
+	})
+		// Useful data for your client-side scripts:
+
+		var profile = googleUser.getBasicProfile();
+
+		console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+
+		console.log('Full Name: ' + profile.getName());
+
+		console.log('Given Name: ' + profile.getGivenName());
+
+		console.log('Family Name: ' + profile.getFamilyName());
+
+		console.log("Image URL: " + profile.getImageUrl());
+
+		console.log("Email: " + profile.getEmail());
+
+
+
+		// The ID token you need to pass to your backend:
+
+		var id_token = googleUser.getAuthResponse().id_token;
+
+		console.log("ID Token: " + id_token);
+
+	};
+
+	function signOut() {
+
+		var auth2 = gapi.auth2.getAuthInstance();
+
+		auth2.signOut().then(function () {
+
+			alert('SignOut!');
+
+		});
+
+	}
+
+</script>

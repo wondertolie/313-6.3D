@@ -1,0 +1,75 @@
+
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>registration</title>
+        <script src="jquery-3.5.0.min.js"></script>
+   
+    </head>
+    <body>
+        <form class="initform" method="post" accept-charset="utf-8">
+            <div class="from-group">
+                <label>输入内容</label>
+                <input class="form-control createContent" type="text" name="content" placeholder="Enter Todo" />
+            </div>
+            <div class="from-group" style="margin: 10px 0px;">
+                <button type="button" class="btnbtn-info">新增</button>
+               <button class="btn btn-default" id="btn" οnclick="searchItem()">查询全部</button>
+            </div>
+        </form>
+
+    </body>
+
+</html>
+
+<script>
+    //This is an example page
+    //创建数据
+    $(document).ready(function(){
+
+    $('.btnbtn-info').click(function(){
+        var obj = {};
+        obj.content = $('.createContent').val();
+        if (obj.content != '') {
+            $.post('http://localhost:3000/create', obj, function (res) {
+                console.log('新增成功');
+                searchItem();
+            })
+        } else {
+            alert('不能为空');
+         }
+        });
+    });
+   /* function ceateItem() {
+        var obj = {};
+        obj.content = $('.createContent').val();
+        if (obj.content != '') {
+            $.post('http://localhost:3000/create', obj, function (res) {
+                console.log('新增成功');
+                searchItem();
+            })
+        } else {
+            alert('不能为空');
+        }
+    }*/
+
+
+    /*function searchItem() {
+            $(".content").empty();
+            $.get('http://localhost:3000/search', function (res) {
+                console.log(res);
+                for (var i = 0; i < res.length; i++) {
+                    $(".content").append(`
+                     <div id="lists" class="alert alert-success" click="edit(event)" style="padding: 0;height: 50px;line-height: 50px;padding-left: 10px;">
+                     <p  style="width: 90%;display: inline-block;" id="${res[i]._id}" >${res[i].content}</p>
+                    <p class="pdelete" title="删除该数据" style=" display: inline-block;">
+                        <button type="button" class="close"><span aria-hidden="true" οnclick="deleteItem()"  nodeValue="${res[i]._id}">×</span><span class="sr-only">Close</span></button>
+                    </p>
+                </div>
+                     `)
+                }
+            })
+        }*/
+
+</script>
